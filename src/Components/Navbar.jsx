@@ -11,7 +11,7 @@ const Navbar = () => {
             <nav className="navbar navbar-expand-sm">
               <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
-                  <img className="logo-img" src="assets/images/logo.png" alt="Logo" />
+                  <img className="logo-img" src="assets/images/Logo.png" alt="Logo" />
                 </Link>
                 <button
                   className="navbar-toggler"

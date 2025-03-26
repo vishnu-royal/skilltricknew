@@ -27,9 +27,7 @@ const ParticleGlobe = () => {
     const outerRadius = calculateRadius();
     const innerRadius = outerRadius - 1;
     const outerParticleCount = 2000;
-    const oceanParticleCount = 6000;
     const rotationSpeed = 0.002;
-    const clippingPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
 
     camera.position.z = outerRadius * 2.5;
 
@@ -69,43 +67,22 @@ const ParticleGlobe = () => {
       return outerSphere;
     };
 
-    // Inner Globe with GeoJSON (API call removed in this version)
+    // Inner Globe with Texture
     const createInnerGlobe = () => {
-      const oceanGeometry = new THREE.BufferGeometry();
-      const oceanPositions = [];
+      const textureLoader = new THREE.TextureLoader();
+      const globeTexture = textureLoader.load("https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg");
 
-      const goldenRatio = (1 + Math.sqrt(5)) / 2;
-      const increment = Math.PI * 2 * goldenRatio;
-
-      for (let i = 0; i < oceanParticleCount; i++) {
-        const phi = Math.acos(1 - (2 * (i + 0.5)) / oceanParticleCount);
-        const theta = increment * i;
-
-        const x = innerRadius * Math.sin(phi) * Math.cos(theta);
-        const y = innerRadius * Math.sin(phi) * Math.sin(theta);
-        const z = innerRadius * Math.cos(phi);
-
-        oceanPositions.push(x, y, z);
-      }
-
-      oceanGeometry.setAttribute(
-        "position",
-        new THREE.Float32BufferAttribute(oceanPositions, 3)
-      );
-
-      const oceanMaterial = new THREE.PointsMaterial({
-        color: 0x1e90ff,
-        size: 0.05,
+      const globeGeometry = new THREE.SphereGeometry(innerRadius, 64, 64);
+      const globeMaterial = new THREE.MeshBasicMaterial({
+        map: globeTexture,
         transparent: true,
-        opacity: 0.3,
-        blending: THREE.AdditiveBlending,
-        clippingPlanes: [clippingPlane],
+        opacity: 0.9,
       });
 
-      const oceanParticles = new THREE.Points(oceanGeometry, oceanMaterial);
-      scene.add(oceanParticles);
+      const globeMesh = new THREE.Mesh(globeGeometry, globeMaterial);
+      scene.add(globeMesh);
 
-      return oceanParticles;
+      return globeMesh;
     };
 
     const outerSphere = createOuterSphere();
