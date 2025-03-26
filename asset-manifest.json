@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/skilltricknew/static/css/main.e6c13ad2.css",
+    "main.js": "/skilltricknew/static/js/main.2161a90f.js",
+    "static/js/453.3eed35aa.chunk.js": "/skilltricknew/static/js/453.3eed35aa.chunk.js",
+    "index.html": "/skilltricknew/index.html",
+    "main.e6c13ad2.css.map": "/skilltricknew/static/css/main.e6c13ad2.css.map",
+    "main.2161a90f.js.map": "/skilltricknew/static/js/main.2161a90f.js.map",
+    "453.3eed35aa.chunk.js.map": "/skilltricknew/static/js/453.3eed35aa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.2161a90f.js"
+  ]
+}
